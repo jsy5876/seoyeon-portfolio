@@ -113,8 +113,8 @@ export const projects: Project[] = [
     description:
       "Next.js와 TypeScript를 기반으로 제작한 개인 포트폴리오 웹페이지입니다.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
-    github: "#",
-    demo: "#",
+    github: "https://github.com/jsy5876/seoyeon-portfolio",
+    demo: "https://seoyeon-portfolio-m0c989brk-jsy5876s-projects.vercel.app/",
     image: "/images/projects/portfolio-page-thumbnail.png",
     images: [
       "/images/projects/portfolio-page-main.png",
