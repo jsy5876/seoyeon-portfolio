@@ -6,11 +6,11 @@
 
 ## 링크
 
-[[배포 링크 입력]](https://seoyeon-portfolio-one.vercel.app/)
+[[배포 링크]](https://seoyeon-portfolio-one.vercel.app/)
 
 ## GitHub
 
-[[GitHub 링크 입력]](https://github.com/jsy5876/seoyeon-portfolio)
+[[GitHub 링크]](https://github.com/jsy5876/seoyeon-portfolio)
 
 ## 주요 기능
 
