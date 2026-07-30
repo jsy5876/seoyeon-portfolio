@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio - 조서연 프론트엔드 포트폴리오
 
-## Getting Started
+프론트엔드 프로젝트와 기술 역량을 한눈에 확인할 수 있도록 제작한 개인 포트폴리오 웹사이트입니다.
 
-First, run the development server:
+소개, 기술 스택, 프로젝트 정보를 하나의 페이지에 구성했으며, 프로젝트별 상세 모달을 통해 주요 기능과 구현 과정, 문제 해결 경험을 확인할 수 있도록 구현했습니다. 데스크톱과 모바일 환경에서도 콘텐츠가 자연스럽게 보이도록 반응형 레이아웃과 인터랙션을 적용했습니다.
+
+## 링크
+
+[[배포 링크 입력]](https://seoyeon-portfolio-one.vercel.app/)
+
+## GitHub
+
+[[GitHub 링크 입력]](https://github.com/jsy5876/seoyeon-portfolio)
+
+## 주요 기능
+
+* 개발자 소개 및 기술 역량 제공
+* 프로젝트 목록과 주요 기술 스택 표시
+* 프로젝트 상세 정보 모달 제공
+* 프로젝트 이미지 갤러리 및 썸네일 탐색
+* 스크롤에 따른 콘텐츠 등장 애니메이션
+* 데스크톱·태블릿·모바일 반응형 레이아웃
+* 프로젝트 배포 사이트 및 GitHub 연결
+
+## 기술 스택
+
+* **Framework:** Next.js
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Deployment:** Vercel
+* **Version Control:** Git, GitHub
+
+## 구현 포인트
+
+### 1. 컴포넌트 구조 분리
+
+페이지의 모든 내용을 하나의 파일에서 관리하지 않고 역할에 따라 컴포넌트를 분리했습니다.
+
+* `sections`: About, Skills, Projects 등 페이지별 섹션
+* `project`: 프로젝트 카드, 상세 모달, 이미지 갤러리
+* `common`: 여러 영역에서 재사용하는 애니메이션 컴포넌트
+* `data`: 프로젝트별 제목, 설명, 기술 스택, 이미지 데이터
+
+화면 구성과 프로젝트 데이터를 분리하여 새로운 프로젝트를 추가하거나 내용을 수정할 때 컴포넌트 코드를 직접 변경하는 범위를 줄였습니다.
+
+### 2. 프로젝트 상세 모달 구현
+
+프로젝트 카드를 선택하면 상세 내용이 나타나는 모달을 구현했습니다.
+
+모달 내부에서 프로젝트 설명, 주요 기능, 기술 스택, 문제 해결 과정과 이미지를 확인할 수 있도록 구성했습니다. 모달이 열리고 닫힐 때 슬라이드 애니메이션을 적용했으며, 배경 영역과 닫기 버튼을 통해 모달을 종료할 수 있도록 구현했습니다.
+
+모달이 열린 상태에서는 배경 페이지가 함께 스크롤되지 않도록 `body` 스크롤을 제어했습니다.
+
+### 3. 이미지 갤러리 분리
+
+프로젝트 상세 모달의 이미지 기능을 별도의 `ProjectImageGallery` 컴포넌트로 분리했습니다.
+
+* 이전·다음 이미지 이동
+* 썸네일 이미지 선택
+* 현재 선택된 이미지 표시
+* 프로젝트 변경 시 첫 번째 이미지로 초기화
+
+모달과 이미지 탐색 로직을 분리해 컴포넌트의 역할을 명확하게 구성했습니다.
+
+### 4. 재사용 가능한 등장 애니메이션
+
+콘텐츠가 화면에 진입할 때 자연스럽게 나타나도록 `Reveal` 컴포넌트를 제작했습니다.
+
+컴포넌트에 전달하는 속성에 따라 위, 왼쪽, 오른쪽 방향에서 등장하도록 구현했으며, About, Skills, Projects 영역에서 동일한 애니메이션 코드를 반복하지 않고 재사용할 수 있도록 구성했습니다.
+
+### 5. 반응형 레이아웃 구현
+
+데스크톱에서는 프로젝트와 기술 스택을 넓은 그리드 형태로 제공하고, 화면이 작아질수록 열의 수와 콘텐츠 간격이 조정되도록 구현했습니다.
+
+모바일 환경에서는 텍스트 크기, 이미지 비율, 모달 크기와 버튼 위치를 조정하여 작은 화면에서도 주요 정보를 편하게 확인할 수 있도록 개선했습니다.
+
+## 문제 해결 과정
+
+### 1. 모달과 배경 클릭 이벤트 충돌
+
+모달 내부를 클릭했을 때 이벤트가 배경까지 전달되어 모달이 닫히는 문제가 발생했습니다.
+
+모달 콘텐츠 영역에서 이벤트 전파를 중단하고, 배경 영역을 직접 클릭한 경우에만 닫힘 함수가 실행되도록 처리했습니다.
+
+### 2. 반응형 그리드 깨짐
+
+화면 너비가 줄어들 때 기술 스택과 프로젝트 카드의 크기가 고정되어 콘텐츠가 화면 밖으로 밀리는 문제가 있었습니다.
+
+화면 크기에 따라 그리드 열의 수가 변경되도록 반응형 클래스를 적용하고, 카드의 최소 너비와 내부 여백을 조정하여 모바일에서도 레이아웃이 유지되도록 수정했습니다.
+
+## 실행 방법
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 아래 주소로 접속합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+프로덕션 빌드는 아래 명령어로 확인할 수 있습니다.
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 아쉬운 점
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* 프로젝트 데이터가 정적 파일에 저장되어 있어 수정 후 재배포가 필요함
+* 이미지가 많아질 경우 초기 로딩 성능이 저하될 가능성이 있음
+* 접근성과 키보드 조작에 대한 세부적인 대응이 부족함
+* 프로젝트별 개발 과정과 성과를 보여주는 정보가 더 보강될 필요가 있음
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 향후 개선 방향
 
-## Deploy on Vercel
+* 프로젝트 데이터를 외부 CMS 또는 데이터베이스와 연동
+* 모달 키보드 조작과 포커스 제어 기능 추가
+* 이미지 최적화와 로딩 성능 개선
+* 프로젝트별 성과와 담당 역할 정보 보강
+* 다크 모드와 라이트 모드 전환 기능 추가
+* 방문자가 바로 연락할 수 있는 Contact 영역 추가
+* Lighthouse를 활용한 성능 및 접근성 개선
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 회고
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+이번 프로젝트를 통해 Next.js와 TypeScript를 활용해 컴포넌트 구조를 설계하고, 프로젝트 데이터를 화면과 분리하여 관리하는 방법을 경험했습니다.
+
+특히 모달, 이미지 갤러리, 등장 애니메이션과 같은 인터랙션을 각각의 컴포넌트로 분리하면서 재사용성과 유지보수성을 고려한 구조의 중요성을 배웠습니다.
+
+단순히 프로젝트를 나열하는 페이지를 만드는 데 그치지 않고, 처음 방문한 사람이 제 경험과 기술을 쉽게 파악할 수 있도록 정보의 순서와 사용자 흐름을 고민한 프로젝트였습니다.
